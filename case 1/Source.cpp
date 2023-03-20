@@ -20,7 +20,7 @@ public:
         len = a.len;
         text = a.text;
         a.text = nullptr; a.len = 0;
-        cout << "конструктор копирования перемещ." << endl;
+        cout << "constructor copy+move" << endl;
     }
 
     Str(const Str& a)
@@ -28,7 +28,7 @@ public:
         len = a.len;
         text = new char[len];
         strcpy(text, a.text);
-        cout << "конструктор копирования"<<endl;
+        cout << "constructor copy"<<endl;
     }
 
     Str& operator=(Str&& a)noexcept
@@ -39,7 +39,7 @@ public:
             len = a.len;
             text = a.text; 
             a.text = nullptr; a.len = 0; 
-            cout << "оператор присваивания перемещ."<<endl;
+            cout << "operator move="<<endl;
         }
        
         return *this;
@@ -56,7 +56,7 @@ public:
         len = a.len;
         text = new char[len];
         strcpy(text, a.text);
-        cout << "оператор присваивания" << endl;
+        cout << "operator =" << endl;
         }
         return *this;
     }
@@ -67,14 +67,14 @@ public:
     {
             len = l+1;
             text = new char[len]; strcpy(text, a);
-            cout << "конструктор инициализации" << endl;
+            cout << "constrictor initialise" << endl;
     }
 
     Str(string& a)
     {
         len = strlen(a.c_str());
         text = new char[len]; strcpy(text, a.c_str());
-        cout << "конструктор инициализации с аргументом string" << endl;
+        cout << "constrictor initialise with string parrameter" << endl;
     }
 
    void getd()
@@ -85,7 +85,7 @@ public:
    operator string()
     {
         string s = this->text; 
-        cout << "преобразователь в стринг" << endl;
+        cout << "convert to string" << endl;
         return s;
        
     }
@@ -106,7 +106,7 @@ public:
         return *this;
     }
 
-    const char getreg() //если первый символ массива буква верхнего регистра, то возвращает ее вариант нижнего регистра
+    const char getreg() //РµСЃР»Рё РїРµСЂРІС‹Р№ СЃРёРјРІРѕР» РјР°СЃСЃРёРІР° Р±СѓРєРІР° РІРµСЂС…РЅРµРіРѕ СЂРµРіРёСЃС‚СЂР°, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ РµРµ РІР°СЂРёР°РЅС‚ РЅРёР¶РЅРµРіРѕ СЂРµРіРёСЃС‚СЂР°
     {
         if (*text > 'A' && *text < 'Z')
         {
@@ -121,13 +121,13 @@ public:
 
 };//end of class
 
-   Str operator+(Str& a, Str& b)//внешний оператор сложения
+   Str operator+(Str& a, Str& b)//РІРЅРµС€РЅРёР№ РѕРїРµСЂР°С‚РѕСЂ СЃР»РѕР¶РµРЅРёСЏ
    {
-       cout << "внешний оператор +" << endl;
+       cout << "outline operator +" << endl;
     return Str(a += b);
    }
 
-void sort(Str** st, int n) // принимает массив указателей на Str и сортирует указатели по содержимому строк (обратный порядок)
+void sort(Str** st, int n) // РїСЂРёРЅРёРјР°РµС‚ РјР°СЃСЃРёРІ СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° Str Рё СЃРѕСЂС‚РёСЂСѓРµС‚ СѓРєР°Р·Р°С‚РµР»Рё РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ СЃС‚СЂРѕРє (РѕР±СЂР°С‚РЅС‹Р№ РїРѕСЂСЏРґРѕРє)
 {
     Str* temp=new Str;
     for (int n1 = 1; n1 < n-1; n1++)
@@ -173,15 +173,15 @@ int main(int argc, char* argv[])
     for (int u = 0; u < argc-1; u++) 
     { arr[u]->getd(); }
 
-    Str a(*arr[1]);//конструкторк копирования
-    a = (*arr[1]);//оператор присваивания
+    Str a(*arr[1]);//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРє РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+    a = (*arr[1]);//РѕРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
     Str b;
-    b += a;//оператор +=
+    b += a;//РѕРїРµСЂР°С‚РѕСЂ +=
     Str c;
-    c= a + b;//внещний оператор +
+    c= a + b;//РІРЅРµС‰РЅРёР№ РѕРїРµСЂР°С‚РѕСЂ +
     Str d(move(b));
     string e = "opanki";
-    d += e;//инициализация с аргументом стринг через 2 этапа
+    d += e;//РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃ Р°СЂРіСѓРјРµРЅС‚РѕРј СЃС‚СЂРёРЅРі С‡РµСЂРµР· 2 СЌС‚Р°РїР°
     string f;
     f = a;
 
