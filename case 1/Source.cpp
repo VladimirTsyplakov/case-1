@@ -12,7 +12,6 @@ class Str
 private:
     char* text;
     int len=0;
-    string ap = "t";
 public:
     Str() { text = nullptr; len = 0;  }
     Str(Str&& a)noexcept
@@ -74,7 +73,7 @@ public:
     {
         len = strlen(a.c_str());
         text = new char[len]; strcpy(text, a.c_str());
-        cout << "constrictor initialise with string parrameter" << endl;
+        cout << "constrictor initialise with string parameter" << endl;
     }
 
    void getd()
@@ -90,7 +89,6 @@ public:
        
     }
 
-
     Str& operator+=(const Str& a)
     {
         int m = len + a.len;
@@ -105,7 +103,6 @@ public:
         cout << "+=" << endl;
         return *this;
     }
-
     const char getreg() //если первый символ массива буква верхнего регистра, то возвращает ее вариант нижнего регистра
     {
         if (*text > 'A' && *text < 'Z')
@@ -126,7 +123,6 @@ public:
        cout << "outline operator +" << endl;
     return Str(a += b);
    }
-
 void sort(Str** st, int n) // принимает массив указателей на Str и сортирует указатели по содержимому строк (обратный порядок)
 {
     Str* temp=new Str;
