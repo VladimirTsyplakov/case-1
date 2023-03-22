@@ -180,7 +180,8 @@ int main(int argc, char* argv[])
     d += e;//инициализация с аргументом стринг через 2 этапа
     string f;
     f = a;
-
+    for (int u = 0; u < argc-1; u++) 
+    { delete arr[u]; }//new add
     delete[] arr;
     return 0;
 }
