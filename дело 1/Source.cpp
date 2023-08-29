@@ -114,14 +114,15 @@ public:
         else return *text; 
     }
 
-    friend Str operator+(Str& , Str& );
+    friend Str& operator+(Str& , Str& );
 
 };//end of class
 
-   Str operator+(Str& a, Str& b)//внешний оператор сложения
+   Str& operator+(Str& a, Str& b)//внешний оператор сложения
    {
        cout << "outline operator +" << endl;
-    return Str(a += b);
+       a=a+b;
+    return a;
    }
 void sort(Str** st, int n) // принимает массив указателей на Str и сортирует указатели по содержимому строк (обратный порядок)
 {
@@ -169,7 +170,7 @@ int main(int argc, char* argv[])
     for (int u = 0; u < argc-1; u++) 
     { arr[u]->getd(); }
 
-    Str a(*arr[1]);//конструкторк копирования
+    Str a(*arr[1]);//конструктор копирования
     a = (*arr[1]);//оператор присваивания
     Str b;
     b += a;//оператор +=
